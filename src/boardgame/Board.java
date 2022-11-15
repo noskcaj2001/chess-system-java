@@ -53,6 +53,19 @@ public class Board {
 		piece.position = position;		
 	}
 	
+	public Piece removePiece(Position position) {
+		if(!positionExistis(position)) {
+			throw new BoardException("Não existe essa posição no tabuleiro");	
+		}
+		if(piece(position) == null) {
+			return null;
+		}
+		Piece aux = piece(position);
+		aux.position = null;
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux;
+	}
+	
 	
 	//Methods: Board.PositionExists, Board.ThereIsAPiece
 	private boolean positionExistis(int row, int column) {
